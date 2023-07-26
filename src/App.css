@@ -36,3 +36,366 @@
     transform: rotate(360deg);
   }
 }
+
+.other-larger-header {
+  font-size: 4rem;
+  color: #ffffff;
+  font-weight: bold; 
+}
+
+.other-larger-header2 {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+
+.other-larger-header3 {
+  font-size: 2rem;
+  margin-top: -1rem;
+  color: #ffffff;
+}
+
+.Login,
+.login-form,
+.Register,
+.register-form {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  /* height: 100%; */
+}
+
+.login-form2 {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+
+
+
+.CS-input {
+  border-radius: 25px;
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: #e8eeef;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  outline: 0;
+}
+
+
+.Login {
+  margin-top: -10rem;
+  padding: 15rem 13rem; /* Adjust the padding as per your preference */
+  max-width: 500px; /* Set a maximum width for the form */
+  /* margin: auto; */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  font-size: 3rem;
+  margin-left: -45rem;
+  margin-right: -3rem;
+  width: 275px;
+}
+
+
+
+
+.Register {
+  padding: 15rem 13rem; /* Adjust the padding as per your preference */
+  max-width: 500px; /* Set a maximum width for the form */
+  margin: auto;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  font-size: 2rem;
+  margin-left: -53rem;
+  margin-right: -7rem;
+  height: 350px;
+
+}
+
+
+
+.larger-header {
+  margin: 0 0 30px -5rem;
+  margin-left: 1.5rem;
+  text-align: center;
+  display: inline;
+  white-space: nowrap; 
+  overflow:visible; 
+  text-overflow: ellipsis;
+  margin-top: -5rem;
+} 
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.type-header {
+  white-space: nowrap; /* Prevent line breaks */
+  overflow:visible; /* Hide overflow */
+  text-overflow: ellipsis;
+}
+
+
+
+
+.label-text {
+  margin-left: 15px;
+}
+
+.option2 {
+  margin-bottom: 20px;
+}
+
+
+.option-bubble {
+  margin-left: 15px;
+}
+
+input[type="name"],
+input[type="password"],
+input[type="email"],
+input[type="doctorsearch"]
+select {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  height: auto;
+  outline: 0;
+  padding: .7rem;
+  width: 100%; /* Set the width to 100% to fill the container */
+  background-color: #e8eeef;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+button {
+  border: none;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #000000;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  border-radius: 25px;
+  font-weight: bold;
+  margin-left: 1.7rem;
+}
+
+button:hover {
+  background-color: rgb(166, 208, 239);
+}
+
+.split {
+  display: flex;
+}
+
+.right-side {
+  width: 900px;
+  background-color: rgb(240, 240, 240);
+  margin-right: -41rem;
+  /* height: 100%; */
+  height: 900px;
+}
+
+.right-side2 {
+  width: 950px;
+  background-color: rgb(240, 240, 240);
+  margin-right: -50rem;
+  margin-left: 1rem;
+  height: 830px;
+}
+
+
+.stock {
+  height: 500px;
+  width: 700px;
+  margin-top: -3rem;
+  border: #282c34;
+  border-radius: 20px;
+  box-shadow: 40px 40px 40px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  position: relative; 
+  margin-left: 2rem;
+}
+
+
+.stock2 {
+  height: 500px;
+  width: 800px;
+  margin-top: 7rem;
+  border: #282c34;
+  border-radius: 20px;
+  box-shadow: 10px 10px 40px 40px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  position: relative; 
+  margin-left: 0rem;
+
+}
+.right-side-text {
+  font-family: Arial;
+  font-size: 3rem;
+  font-weight: bolder;
+  color: #060f3c;
+}
+
+
+
+.rst-box {
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2); 
+  border-radius: 20px;
+  margin-top: 7rem;
+  margin-left: 3rem;
+  text-align: left; 
+  width: 65%;
+  z-index: 2;
+  position: relative;
+}
+
+
+.rst-box2 {
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2); 
+  border-radius: 20px;
+  margin-top: -3rem;
+  margin-left: 25rem;
+  text-align: left; 
+  width: 45%;
+  z-index: 2;
+  position: relative;
+}
+
+
+.sm-logo {
+  margin-left: -65rem;
+  width: 14rem;
+  margin-top: 1.2rem;
+  
+}
+
+.sm-logo2 {
+  margin-left: -75rem;
+  width: 13rem;
+  margin-top: 1.2rem;
+}
+
+.CC-sm-logo {
+  margin-left: -74rem;
+  margin-bottom: 10rem;
+  width: 14rem;
+  margin-top: .8rem;
+}
+
+.CCinfo {
+  margin-bottom: 30rem;
+  height: 70px;
+}
+
+
+
+.CS-sm-logo {
+  margin-left: -74rem;
+  margin-bottom: 15rem;
+  width: 13rem;
+  margin-top: 1.2rem;
+}
+
+.CS-page {
+  margin-bottom: 30rem;
+}
+
+.CS-search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.calendar-logo {
+  height: 3rem;
+  width: 3rem;
+  margin-right: 1rem ;
+}
+
+
+.error {
+  font-size: 17.5px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 3rem;
+  color: rgb(235, 69, 69);
+  font-weight: bold;
+  max-width: 15rem;
+}
+
+.link-to-creation {
+  color: white;
+  font-weight: bold;
+}
+
+.react-big-calendar {
+  background-color: #e8eeef;
+}
+
+.error2 {
+  font-size: 17.5px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 0rem;
+  color: rgb(235, 69, 69);
+  font-weight: bold;
+}
+
+.User-CC-error {
+  font-size: 17.5px;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(235, 69, 69);
+  font-weight: bold;
+  max-width: 50rem;
+}
+
+.Create-CC-error {
+  font-size: 17.5px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 2rem;
+  color: rgb(235, 69, 69);
+  font-weight: bold;
+  
+}
+
+.CS-error {
+  font-size: 17.5px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: -2rem;
+  color: rgb(235, 69, 69);
+  font-weight: bold;
+  max-width: 50rem;
+}
+
+.TOS-header {
+  color: #e8eeef;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 4rem;
+}
+
+.TOS {
+  color: #e8eeef;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: larger;
+  width: 50rem;
+}
+
+.TOS-subheader {
+  color: #e8eeef;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 2rem;
+
+}

@@ -1,0 +1,350 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+  }
+
+  .page-container {
+    display: flex;
+    align-items: flex-start;
+    height: 100vh;
+    overflow-x: hidden;
+    justify-content: center; /* Center the content horizontally */
+  }
+  
+  .side-menu-container {
+    flex: 1; /* Adjust the flex property to control the width of the side menu */
+    background-color: #f1f1f1;
+    padding: 0px;
+    margin-right: 3rem; /* Adjust the spacing between the side menu and calendar */
+    margin-left: 1rem; /* Adjust the spacing between the side menu and the left edge */
+    height: 94%;
+    border: 4px solid rgb(158, 155, 155);
+    border-radius: 13px;
+    overflow-y: hidden;
+    position: relative; 
+    margin-top: 1rem;
+  }
+  
+  .calendar-title {
+    color: white;
+    margin-top: -2rem;
+    font-size: 1.8rem;
+  }
+  .calendar-container {
+    flex: 5; /* Adjust the flex property to control the width of the calendar */
+    border: 1px solid black;
+    height: 600px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    border: 4px solid rgb(177, 171, 171);
+    border-radius: 13px;
+    width: 60rem;
+  }
+
+  .RightSideScreen {
+    margin-top: 3rem;
+    margin-right: 1rem;
+  }
+  
+  .appt-list {
+    list-style-type: none;
+    text-align: center;
+  }
+
+  .side-menu {
+    background-color: #f1f1f1;
+    padding: 20px;
+    
+  }
+  
+  .appt-item {
+    margin-bottom: 10px;
+    
+  }
+  
+  .appt-item-box {
+    background-color: #fff;
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: -2.5rem;
+    text-align: center;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+  .appt-item-title {
+    font-weight: bold;
+
+  }
+  
+  .appt-item-time {
+    color: #888;
+  }
+
+  .sideHeader {
+    margin-bottom: 3rem;
+    margin-top: -1rem;
+  }
+
+
+  .side-title {
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+  }
+
+  .sideHeader {
+    margin-bottom: 2rem;
+  }
+
+
+  .side-button {
+    margin-right: 1.5rem;
+  }
+
+  .side-button2 {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 4rem;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 0;
+    margin-left: 3.3rem;
+    padding:0;
+  }
+  
+  .sb-text {
+    border-radius: 4px;
+    width: 15rem;
+    margin-left: -7.5rem;
+    position: absolute;
+    bottom: 10px; /* Adjust this value to position the .sb-text as needed */
+    left: 50%; /* Center horizontally */
+    
+  }
+    
+
+  
+
+  .entire-screen {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  .create-appt {
+    margin-top: 1rem;
+    margin-left: 0rem;
+    width: 30rem;
+    font-size: 1.25rem;
+  }
+
+  .create-appt:hover {
+    background-color: rgb(165, 244, 165);
+  }
+
+  .sign-out-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 15px;
+    margin-left: 54rem;
+    left: 5px;
+    margin-top: -2rem;
+  
+  }
+  
+  .sign-out-div {
+    margin-right: -80rem;
+  }
+
+
+
+
+  /*appt pop up*/
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 9999; /* Ensure the pop-up is on top of other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup {
+    background-color: #fff;
+    padding: 40px 60px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+  }
+  
+  .popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .popup label {
+    font-weight: bold;
+
+  }
+  
+  .popup input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: -.1rem;
+  }
+  
+  .popup-buttons {
+    display: flex;
+    justify-content:center;
+    gap: 10px;
+    margin-left: -2rem;
+    margin-top: 1.5rem;
+  }
+  
+  .popup-button {
+    padding: 8px 16px;
+    background-color: #060f3c;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  .popup-button:hover {
+    background-color: #0056b3;
+  }
+
+  /* Styling for calendar events */
+  .fc-event {
+    background-color: rgb(68, 162, 255);
+    color: black;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+  }
+
+  /* Hover effect on calendar events */
+  .fc-event:hover {
+    background-color: dodgerblue;
+    color: white;
+  }
+
+  .popup-close-button {
+    background: none;
+    border: solid;
+    cursor: pointer;
+    outline: none;
+    margin-left: 30rem;
+    margin-right: -10px;
+    margin-top: -10px;
+    padding: .5rem;
+    border-radius: 50%;
+    width: 30px; /* Set an equal width and height for a perfect circle */
+    height: 30px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    
+  }
+  
+  .popup-close-button span {
+    font-size: 20px;
+    color: #000;
+  }
+
+  .topLine {
+    display: flex;
+  }
+
+  .popup-2 {
+    background-color: #fff;
+    padding: 40px 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    padding-top: 2rem;
+  }
+
+  .popup-2-header {
+    margin-top: -1.5rem;
+  }
+
+  .appt-list-container {
+    max-height: 300px;/* Adjust the maximum height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+  }
+
+
+  .create-appt-form {
+    width: 30rem;
+  }
+  
+  .appoint-info {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 15rem;
+    border-radius: 10px;
+    font-weight: bolder;
+    margin-right: -2rem;
+    position: absolute;
+    bottom:10px;
+    margin-left: 1rem;
+  }
+
+  .max-appt-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .max-appt-header {
+    margin-bottom: 3rem;
+  }
+
+  .option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .option label {
+    margin-right: 1rem;
+    font-weight: bold;
+  }
+
+  .buttons9 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-left: 4rem;
+  }

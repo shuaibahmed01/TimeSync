@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Lexend Deca', sans-serif;
+    /* background: linear-gradient(to bottom, #0ab0f6, #02359a); */
+    background-image: url('/Users/shuaibahmed/timesync/src/components/testbg2.png');
+    /* Adjust background properties as needed */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #060f3c;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-top: -7rem;
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: -50px;
+  }
+  
+  .company-name {
+    font-weight: bold;
+    font-size: 8rem;
+    margin-top: .5rem;
+    margin-bottom: 4.5rem;
+    text-align: center;
+    color: white;
+    
+  }
+
+  .check {
+    width: 125px;
+    height:auto;
+    margin-bottom: 50px;
+  }
+
+  .slogan {
+    font-style: italic;
+    color: #ffffff;
+    margin-bottom: 60px;
+    font-size: 1.5rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: -.5rem;
+    /* font-family: 'Times New Roman', Times, serif; */
+  }
+
+
+  .logo {
+    height: 25vmin;
+    pointer-events: none;
+    margin-bottom: 3rem;
+  }
+  
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .button-login {
+    font-family:'Lexend Deca', sans-serif;
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+  }
+  
+
+  .button-signup {
+    font-family: 'Lexend Deca', sans-serif;
+    padding: 1rem 2rem;
+    font-size: 1.3rem;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .button-login:hover,
+  .button-signup:hover {
+    background-color: #555e8a;
+  }
+    /* Styling for the footer section at the bottom */
+  .footer-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem; /* Adjust the margin-top to move the links further down */
+    font-family: 'Times New Roman', Times, serif;
+    color: lightgray;
+    margin-left: 1rem;
+    margin-bottom: -1rem;
+  }
+
+  /* Styling for the links */
+  .footer-link {
+    color: white;
+    margin: 15px; /* Adjust the margin to create more space between the links */
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .footer-link a {
+    color: white; /* Set the link text color to white */
+    text-decoration: none; /* Remove underline from the links */
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .footer-link a:hover {
+    color: white; /* Set the link text color to white on hover */
+  }
+
+  /* Styling for the dividing line between the links */
+  .divider {
+    width: 2px; /* Adjust the width to make the line longer */
+    height: 40px;
+    background-color: #ccc;
+    margin: 0 20px; /* Adjust the margin to create more space between the line and links */
+  }
+
+/* IntroAnimation.css */
+.intro-container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  opacity: 0;
+  animation: fadeInWord 2s ease-in-out, stayVisible 2s ease-in-out;
+  color: white;
+}
+
+@keyframes fadeInWord {
+  to {
+    opacity: 1;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.fade-in-contents {
+  opacity: 0;
+  animation: fadeInContents 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInContents {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes stayVisible {
+  /* This animation will keep the "Introduction" text visible for 1 second after the fadeInWord animation is complete */
+  to {
+    opacity: 1;
+  }
+}
