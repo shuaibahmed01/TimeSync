@@ -4,6 +4,11 @@ from flask_cors import CORS
 from mysql.connector import Error
 from datetime import datetime
 import bcrypt
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -11,10 +16,10 @@ app.debug = True
 
 # Establish a connection to your MySQL database
 connection = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='iamironman123',
-    database='DC'
+    host=os.environ.get('DB_HOST', 'localhost'),  # Default to 'localhost' if environment variable not found
+    user=os.environ.get('DB_USER', 'root'),       # Default to 'root' if environment variable not found
+    password=os.environ.get('DB_PASSWORD', 'iamironman123'),  # Default password if environment variable not found
+    database=os.environ.get('DB_NAME', 'DC')       # Default to 'DC' if environment variable not found
 )
 
 if connection.is_connected():
