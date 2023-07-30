@@ -88,7 +88,7 @@ def store_cc_data():
 
 @app.route('/api/cc-create', methods=['POST'])
 def store_cc_create():
-
+    
     
     data = request.json
     name = data['name']
@@ -293,11 +293,11 @@ def fetch_data():
 
     try:
         table_name = request.args.get('tableName')  # Get the table name from the request parameters
-
+        print('TABLE NAME:', table_name)
         cursor.execute(f'SELECT * FROM {table_name}')
-        
+        print('1')
         rows = cursor.fetchall()
-        
+        print('ROWS:', rows)
         # Convert the rows to a list of dictionaries
         data = []
         for row in rows:
@@ -308,10 +308,11 @@ def fetch_data():
                 'end_time': row[4]
                 # Add more columns as needed
             })
-
+        print('DATA:', data)
         cursor.execute('SELECT maxAppt FROM Companies WHERE CCname = %s', (table_name,))
+        print('3')
         response = cursor.fetchone()
-
+    
         # Add maxAppt value to the data dictionary
         if response:
             max_appt_value = response[0]
