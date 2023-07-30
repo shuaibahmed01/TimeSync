@@ -2,13 +2,11 @@ from flask import Flask, request, jsonify
 import mysql.connector
 from flask_cors import CORS
 from mysql.connector import Error
-from datetime import datetime
 import bcrypt
-import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+# # Load environment variables from .env file
+# load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -16,10 +14,10 @@ app.debug = True
 
 # Establish a connection to your MySQL database
 connection = mysql.connector.connect(
-    host=os.environ.get('DB_HOST', 'localhost'),  # Default to 'localhost' if environment variable not found
-    user=os.environ.get('DB_USER', 'root'),       # Default to 'root' if environment variable not found
-    password=os.environ.get('DB_PASSWORD', 'iamironman123'),  # Default password if environment variable not found
-    database=os.environ.get('DB_NAME', 'DC')       # Default to 'DC' if environment variable not found
+    host='us-cdbr-east-06.cleardb.net',  # Default to 'localhost' if environment variable not found
+    user='b846167a0f960d',       # Default to 'root' if environment variable not found
+    password='f991bcac',  # Default password if environment variable not found
+    database='heroku_ec43fdd48a55760'       # Default to 'DC' if environment variable not found
 )
 
 if connection.is_connected():
@@ -311,12 +309,18 @@ def fetch_data():
                 # Add more columns as needed
             })
 
-        
+        cursor.execute('SELECT maxAppt FROM Companies WHERE CCname = %s', (table_name,))
+        response = cursor.fetchone()
 
-       
+        # Add maxAppt value to the data dictionary
+        if response:
+            max_appt_value = response[0]
+            data.append({'maxAppt': max_appt_value})
 
+        print(data)
         return jsonify(data)
 
+        
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     
@@ -333,7 +337,6 @@ def delete_appointment():
         start_time = appointment_data['start_time'][:-3]
 
         
-    
 
         table_name = '`' + table + '`'  # Wrap table name in backticks to handle special characters
         # Delete the appointment from the database
@@ -378,7 +381,7 @@ def update_max_appointments():
 
         print(neworgendTime)
         # Update the maxAppt value in the Companies table
-        update_query = "UPDATE Companies SET maxAppt = %s, orgStartTime = %s, orgEndTime = %s WHERE CCname = %s"
+        update_query = "UPDATE Companies SET maxAppt =%s, orgStartTime = %s, orgEndTime = %s WHERE CCname = %s"
         values = (max_appointments, orgStartTime, neworgendTime, ccname)
         cursor.execute(update_query, values)
         connection.commit()
@@ -389,31 +392,26 @@ def update_max_appointments():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/fetch-max-appointments', methods=['GET'])
+@app.route('/api/fetch-max-appointments', methods=['GET','POST'])
 def fetch_max_appointments():
     print('fetch max call made')
     try:
-        ccname = request.args.get('ccname')
+        print('here')
+        data = request.json
+        print(data)
+        dispname = data['dispname']
+        print(dispname)
+        cursor.execute("SELECT maxAppt WHERE CCname = %s", (dispname,))
+        company_data = cursor.fetchone()
+        max_appt = company_data[0]
 
-
+        print(max_appt)
         
-        # Perform a SELECT query to fetch the maxAppointments value for the company
-        query = "SELECT maxAppt FROM Companies WHERE CCname = %s"
 
-        cursor.execute(query, (ccname,))
-
-        max_appointments = cursor.fetchone()[0]
-        
-
-
-        
-        # Return the maxAppointments value as a JSON response
-        return jsonify({'maxAppointments': max_appointments})
+        return jsonify(max_appt)
     
     except Exception as e:
-        print("Error fetching maxAppointments from the database:", e)
-        # Handle the error condition
-        return jsonify({'error': 'An error occurred while fetching maxAppointments.'}), 500
+        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == '__main__':

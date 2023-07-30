@@ -6,7 +6,7 @@ import { format, isToday } from 'date-fns';
 const SideMenu = () => {
   const [showAppointments, setShowAppointments] = useState(false);
   const [appointments, setAppointments] = useState([]); 
-  const [currentmaxAppointments, setCurrentMaxAppointments] = useState(0); // Declare currentmaxAppointments state
+  const [currentmaxAppointments, setCurrentMaxAppointments] = useState(3); // Declare currentmaxAppointments state
   const [orgStartTime, setOrgStartTime] = useState('');
   const [orgEndTime, setOrgEndTime] = useState('');
 
@@ -71,20 +71,27 @@ const SideMenu = () => {
             tableName: newvariable,
           },
         });
-        const data = response.data;
+        let data = response.data;
+
+        console.log('DATAsm:',data)
+        // Check if 'maxAppt' is present in the data response
+        console.log('IN THE FUNCTIONsm')
+
+        
+        // Extract the 'maxAppt' value from the data
+        const maxApptValue = data.pop()
+        console.log('maxAPPTVALUEsm:', maxApptValue)
+        // Use setMaxAppointments to update the state with the 'maxAppt' value
+        console.log(maxApptValue.maxAppt)
+        const placeholder = maxApptValue.maxAppt
+        setCurrentMaxAppointments(placeholder);
+        console.log('AFTER SETsm:', maxAppointments)
+
+
+        
+
 
         setAppointments(data)
-
-        const response2 = await axios.get('http://localhost:8000/api/fetch-max-appointments', {
-          params: {
-            ccname: newvariable,
-          },
-        });
-  
-        console.log(response.data);
-        const currentmaxAppointments = response2.data;
-        
-        setCurrentMaxAppointments(currentmaxAppointments)
         
 
         
@@ -211,7 +218,7 @@ const SideMenu = () => {
         </button>
       ) : (
         <div className='appoint-info'>
-          <span>Note: Max Appointments Per Hour is {currentmaxAppointments.maxAppointments}</span>
+          <span>Note: Max Appointments Per Hour is {currentmaxAppointments}</span>
         </div>
       )}
       {showPopup && (

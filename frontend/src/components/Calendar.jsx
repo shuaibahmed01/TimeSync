@@ -42,32 +42,6 @@ const CalendarPage = () => {
       setdispname(CCname);
     }
   }, [name, accountInfo, CalendarData]);
-
-
-  useEffect(() => {
-    const fetchMaxAppointments = async () => {
-      try {
-        const response = await axios.get('http://localhost:8000/api/fetch-max-appointments', {
-          params: {
-            ccname: dispname,
-          },
-        });
-  
-        console.log(response.data);
-        const { maxAppointments } = response.data;
-  
-        // Store the maxAppointments data in localStorage
-        localStorage.setItem('maxAppointments', maxAppointments);
-  
-        setMaxAppointments(maxAppointments);
-      } catch (error) {
-        console.error(error);
-        // Handle the error condition
-      }
-    };
-  
-    fetchMaxAppointments();
-  }, [dispname]);
   
 
   const getEventColor = (event) => {
@@ -98,7 +72,27 @@ const CalendarPage = () => {
               tableName: dispname,
             },
           });
-          const data = response.data;
+          let data = response.data;
+
+          console.log('DATA:',data)
+          // Check if 'maxAppt' is present in the data response
+          console.log('IN THE FUNCTION')
+
+          
+          // Extract the 'maxAppt' value from the data
+          const maxApptValue = data.pop()
+          console.log('maxAPPTVALUE:', maxApptValue)
+          // Use setMaxAppointments to update the state with the 'maxAppt' value
+          console.log(maxApptValue.maxAppt)
+          const placeholder = maxApptValue.maxAppt
+          console.log("PLACEHOLDER:", placeholder)
+          setMaxAppointments(placeholder);
+          console.log('AFTER SET:', maxAppointments)
+          // Remove the 'maxAppt' entry from the 'data' object
+          
+     
+          console.log(maxAppointments)
+          console.log('NEW DATA:',data)
 
           // Calculate appointment counts for each time slot
           const counts = {};
@@ -176,7 +170,12 @@ const CalendarPage = () => {
     };
 
     fetchData();
-  }, [dispname, accountInfo]);
+  }, [dispname, accountInfo, maxAppointments]);
+
+  // useEffect(() => {
+  //   console.log('MAX APPOINTMENTS CHANGED:', maxAppointments);
+  //   // Do anything else you need to do with the updated maxAppointments value
+  // }, [maxAppointments]);
 
   /* Handles Sign Out */
   const handleSignOut = () => {
