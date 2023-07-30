@@ -3,6 +3,7 @@ import mysql.connector
 from flask_cors import CORS
 from mysql.connector import Error
 import bcrypt
+import os
 # from dotenv import load_dotenv
 
 # # Load environment variables from .env file
@@ -10,15 +11,23 @@ import bcrypt
 
 app = Flask(__name__)
 CORS(app)
-app.debug = True
 
-# Establish a connection to your MySQL database
-connection = mysql.connector.connect(
-    host='us-cdbr-east-06.cleardb.net',  # Default to 'localhost' if environment variable not found
-    user='b846167a0f960d',       # Default to 'root' if environment variable not found
-    password='f991bcac',  # Default password if environment variable not found
-    database='heroku_ec43fdd48a55760'       # Default to 'DC' if environment variable not found
-)
+# Use the Heroku database connection (ClearDB or JawsDB) in production
+if 'DATABASE_URL' in os.environ:
+    connection = mysql.connector.connect(
+        host=os.environ['DB_HOST'],       # Update 'DB_HOST' to the correct environment variable name
+        user=os.environ['DB_USER'],       # Update 'DB_USER' to the correct environment variable name
+        password=os.environ['DB_PASSWORD'],  # Update 'DB_PASSWORD' to the correct environment variable name
+        database=os.environ['DB_NAME'],       # Update 'DB_NAME' to the correct environment variable name
+    )
+else:
+    # Use your local development database connection
+    connection = mysql.connector.connect(
+        host='us-cdbr-east-06.cleardb.net',
+        user='b846167a0f960d',
+        password='f991bcac',
+        database='heroku_ec43fdd48a55760'
+    )
 
 if connection.is_connected():
     print("Connection Successful")
@@ -416,4 +425,8 @@ def fetch_max_appointments():
 
 
 if __name__ == '__main__':
-    app.run(port=8000)
+    # Only run the app with the development server in a local environment
+    # For production, Gunicorn will handle the server.
+    is_production = 'DYNO' in os.environ
+    port = int(os.environ.get('PORT', 8000)) if is_production else 8000
+    app.run(host='0.0.0.0', port=port)

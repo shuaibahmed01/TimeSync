@@ -34,6 +34,7 @@ Flask-Cors==4.0.0
 fonttools==4.40.0
 fqdn==1.5.1
 frozendict==2.3.8
+gunicorn==21.2.0
 haralyzer==2.3.0
 html5lib==1.1
 idna==3.4
