@@ -1,7 +1,7 @@
-import {useNavigate, useLocation } from 'react-router-dom';
-import { useRef, useEffect, useState} from 'react'
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState} from 'react'
 import axios from 'axios';
-import { format, isToday } from 'date-fns';
+import { format } from 'date-fns';
 
 const SideMenu = () => {
   const [showAppointments, setShowAppointments] = useState(false);
@@ -30,21 +30,21 @@ const SideMenu = () => {
      } 
    }, [location]);
    
-   const convertTo24HourFormat = (timeStr) => {
-    let [time, meridian] = timeStr.split(' ');
-    let [hours, minutes] = time.split(':');
+  //  const convertTo24HourFormat = (timeStr) => {
+  //   let [time, meridian] = timeStr.split(' ');
+  //   let [hours, minutes] = time.split(':');
   
-    if (meridian === 'PM' || meridian === 'pm') {
-      hours = parseInt(hours) + 12;
-    }
+  //   if (meridian === 'PM' || meridian === 'pm') {
+  //     hours = parseInt(hours) + 12;
+  //   }
   
-    if (meridian === 'AM' || meridian === 'am') {
-      if (hours === '12') {
-        hours = '00';
-      }
-    }
-    return `${hours}:${minutes}`;
-  }
+  //   if (meridian === 'AM' || meridian === 'am') {
+  //     if (hours === '12') {
+  //       hours = '00';
+  //     }
+  //   }
+  //   return `${hours}:${minutes}`;
+  // }
    /* set displayname */
    useEffect(() => {
      if (accountInfo) {
@@ -64,9 +64,12 @@ const SideMenu = () => {
 
 
    useEffect(() => {
+    console.log('SIDEMENU FETCH (IN USE EFFECT')
     const fetchData = async () => {
+      console.log('SIDEMENU FETCH DATA CALLED (BEFORE TRY)')
       try {
-        const response = await axios.get('http://localhost:8000/api/fetch-data', {
+        console.log('SIDEMENU FETCHDATA CALLED')
+        const response = await axios.get('https://timesyncv2-a367bdb60782.herokuapp.com/api/fetch-data', {
           params: {
             tableName: newvariable,
           },
@@ -101,7 +104,7 @@ const SideMenu = () => {
     };
 
     fetchData();
-  }, [accountInfo]);
+  }, [accountInfo, maxAppointments, newvariable]);
 
   
 
@@ -170,7 +173,7 @@ const SideMenu = () => {
 
   const saveMaxAppointments = () => {
     axios
-      .put('http://localhost:8000/api/update-max-appointments', {
+      .put('https://timesyncv2-a367bdb60782.herokuapp.com/api/update-max-appointments', {
         ccname: newvariable, // Pass the value of newvariable as ccname
         maxAppointments: maxAppointments, // Pass the value of maxAppointments
         orgStartTime: orgStartTime, // Pass the value of orgStartTime

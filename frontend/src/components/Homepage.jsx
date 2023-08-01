@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Homepage.css';
-import logo from './DC2.svg';
-import check from './check.svg';
 
 import tslogo from './croppedlogo.png';
 
@@ -10,7 +8,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const word = "Introducing";
   const [animationFinished, setAnimationFinished] = useState(false);
-  const [showContents, setShowContents] = useState(false);
+  
 
   useEffect(() => {
     const contentDelay = 1000;
@@ -19,7 +17,6 @@ const HomePage = () => {
     const animationTimer = setTimeout(() => {
       setAnimationFinished(true);
       setTimeout(() => {
-        setShowContents(true);
       }, contentDelay);
     }, introAnimationDuration);
 

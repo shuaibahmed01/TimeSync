@@ -13,39 +13,41 @@ app = Flask(__name__)
 CORS(app)
 
 # Use the Heroku database connection (ClearDB or JawsDB) in production
-if 'DATABASE_URL' in os.environ:
-    connection = mysql.connector.connect(
-        host=os.environ['DB_HOST'],       # Update 'DB_HOST' to the correct environment variable name
-        user=os.environ['DB_USER'],       # Update 'DB_USER' to the correct environment variable name
-        password=os.environ['DB_PASSWORD'],  # Update 'DB_PASSWORD' to the correct environment variable name
-        database=os.environ['DB_NAME'],       # Update 'DB_NAME' to the correct environment variable name
-    )
-else:
-    # Use your local development database connection
-    connection = mysql.connector.connect(
-        host='us-cdbr-east-06.cleardb.net',
-        user='b846167a0f960d',
-        password='f991bcac',
-        database='heroku_ec43fdd48a55760'
-    )
+def open_db_connection():
+    # Use the Heroku database connection (ClearDB or JawsDB) in production
+    if 'DATABASE_URL' in os.environ:
+        return mysql.connector.connect(
+            host=os.environ['DB_HOST'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD'],
+            database=os.environ['DB_NAME'],
+        )
+    else:
+        # Use your local development database connection
+        return mysql.connector.connect(
+            host='us-cdbr-east-06.cleardb.net',
+            user='b846167a0f960d',
+            password='f991bcac',
+            database='heroku_ec43fdd48a55760'
+        )
 
-if connection.is_connected():
-    print("Connection Successful")
+def close_db_connection(connection):
+    connection.close()
 
-# Create a cursor object to execute SQL queries
-cursor = connection.cursor()
+
 
 @app.route('/api/data', methods=['GET', 'POST'])
 def store_data():
-
+    connection = open_db_connection()
     try:
+        cursor = connection.cursor()
         # Get the data from the request's JSON body
         data = request.json
         name = data['name']
         email = data['email']
         password = data['password']
         company = data.get('CCname', '')
-
+        
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
         if (company):
             # Perform the necessary database operation (e.g., insert into a table)
@@ -55,19 +57,27 @@ def store_data():
             cursor.execute(sql, values)
             connection.commit()
         
-            
+            cursor.close()
             # # Return a success response
             return jsonify({'message': 'Data stored successfully'})
         else:
+            cursor.close()
             return jsonify({'error': 'Company Not Found'}), 400
 
     except Exception as e:
         # Return an error response if an exception occurs
+        cursor.close()
         return jsonify({'error': str(e)}), 500
+    finally:
+        # Close the database cursor and connection after use
+        cursor.close()
+        close_db_connection(connection)
     
 @app.route('/api/cc-data', methods=['POST'])
 def store_cc_data():
+    connection = open_db_connection()
     try:
+        cursor = connection.cursor()
         data = request.json
         name = data['name']
         email = data['email']
@@ -93,11 +103,16 @@ def store_cc_data():
             return jsonify({'error': 'Invalid company details'}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    finally:
+        # Close the database connection after use
+        cursor.close()
+        close_db_connection(connection)
     
 
 @app.route('/api/cc-create', methods=['POST'])
 def store_cc_create():
-    
+    connection = open_db_connection()
+    cursor = connection.cursor()
     
     data = request.json
     name = data['name']
@@ -149,45 +164,57 @@ def store_cc_create():
 
         except Error as e:
             print(f'Error creating table: {e}')
+        finally:
+        # Close the database connection after use
+            cursor.close()
+            close_db_connection(connection)
 
     return jsonify({'message': 'Data stored successfully'})
 
 def login(email, password):
-    cursor = connection.cursor()
+    connection = open_db_connection()
+    try:
+        cursor = connection.cursor()
 
-    # Check first table for the username
-    query = "SELECT * FROM Clients WHERE email = %s"
-    cursor.execute(query, (email,))
-    account = cursor.fetchone()
- 
-    
-    if account and bcrypt.checkpw(password.encode('utf-8'), account[3].encode('utf-8')):
+        # Check first table for the username
+        query = "SELECT * FROM Clients WHERE email = %s"
+        cursor.execute(query, (email,))
+        account = cursor.fetchone()
 
-        # Account found in 'Clients' table, return account information
-        account_info = {
-            "name": account[1],
-            "accountType": 'Client',
-            "company": account[4]
-        }
-        return account_info
+        if account and bcrypt.checkpw(password.encode('utf-8'), account[3].encode('utf-8')):
+            # Account found in 'Clients' table, return account information
+            account_info = {
+                "name": account[1],
+                "accountType": 'Client',
+                "company": account[4]
+            }
+            return account_info
 
-    # If not found, check second table for the username
-    query = "SELECT * FROM Employees WHERE email = %s"
-    cursor.execute(query, (email,))
-    account = cursor.fetchone()
+        # If not found, check second table for the username
+        query = "SELECT * FROM Employees WHERE email = %s"
+        cursor.execute(query, (email,))
+        account = cursor.fetchone()
 
-    if account and bcrypt.checkpw(password.encode('utf-8'), account[3].encode('utf-8')):
+        if account and bcrypt.checkpw(password.encode('utf-8'), account[3].encode('utf-8')):
+            # Account found in 'Employees' table, return account information
+            account_info = {
+                "name": account[1],
+                "accountType": 'Organizer',
+                "company": account[4]
+            }
+            return account_info
 
-        # Account found in 'Clients' table, return account information
-        account_info = {
-            "name": account[1],
-            "accountType": 'Organizer',
-            "company": account[4]
-        }
-        return account_info
-    
-    # Account not found in either table
-    return None
+        # Account not found in either table
+        return None
+
+    except Exception as e:
+        # Return an error response if an exception occurs
+        return jsonify({'error': str(e)}), 500
+    finally:
+        # Close the database cursor and connection after use
+        cursor.close()
+        close_db_connection(connection)
+
 
 
 
@@ -201,8 +228,10 @@ def handle_login():
 
     if account_info:
         return jsonify({"message": "Login successful", "account": account_info})
+        
     else:
         return jsonify({"error": "Invalid credentials"}), 401
+    
     
 def convert_to_24_hour_format(time_str):
     time, meridian = time_str.split(' ')
@@ -244,34 +273,45 @@ def is_within_business_hours(start_time, end_time, org_start_time, org_end_time)
 
     return False
 
+
 @app.route('/api/hour-check', methods=['POST'])
 def hour_check():
+    connection = open_db_connection()
     try:
+        cursor = connection.cursor()
         data = request.json
         start_time = data['start_time']
         end_time = data['end_time']
         dispname = data['dispname']
+
+        # Fetch the orgStartTime and orgEndTime from the database
         cursor.execute("SELECT orgStartTime, orgEndTime FROM Companies WHERE CCname = %s", (dispname,))
         company_data = cursor.fetchone()
+
         org_start_time = company_data[0]
         org_end_time = company_data[1]
 
-
+        # Check if the appointment start time and end time are within the orgStartTime and orgEndTime
         if is_within_business_hours(start_time, end_time, org_start_time, org_end_time):
-
             return jsonify({'result': True})
         else:
-
             return jsonify({'result': False})
+
     except Exception as e:
+        # Return an error response if an exception occurs
         return jsonify({'error': str(e)}), 500
+    finally:
+        # Close the database cursor and connection after use
+        cursor.close()
+        close_db_connection(connection)
 
 
 
 @app.route('/api/appt-create', methods=['POST'])
 def store_appt_data():
-    
+    connection = open_db_connection()
     try:
+        cursor = connection.cursor()
         data = request.json
         client_name = data['client_name']
         date = data['date']
@@ -294,13 +334,17 @@ def store_appt_data():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
+    finally:
+        # Close the database cursor and connection after use
+        cursor.close()
+        close_db_connection(connection)
     
 
 @app.route('/api/fetch-data', methods=['GET', 'POST'])
 def fetch_data():
-
+    connection = open_db_connection
     try:
+        cursor = connection.cursor()
         table_name = request.args.get('tableName')  # Get the table name from the request parameters
         print('TABLE NAME:', table_name)
         cursor.execute(f'SELECT * FROM {table_name}')
@@ -333,13 +377,19 @@ def fetch_data():
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
+    finally:
+        # Close the database cursor and connection after use
+        cursor.close()
+        close_db_connection(connection)
 
 
 # API endpoint to delete an appointment
 @app.route('/api/delete-appt', methods=['DELETE'])
 def delete_appointment():
+    connection = open_db_connection()
+
     try:
+        cursor = connection.cursor()
         appointment_data = request.json
         table = appointment_data['table']
         title = appointment_data['title']
@@ -362,11 +412,17 @@ def delete_appointment():
     except Exception as e:
         # Return an error message if something goes wrong
         return jsonify(error=str(e)), 500
+    finally:
+        # Close the database cursor and connection after use
+        cursor.close()
+        close_db_connection(connection)
     
 
 @app.route('/api/update-max-appointments', methods=['PUT'])
 def update_max_appointments():
+    connection = open_db_connection()
     try:
+        cursor = connection.cursor()
         data = request.json
         ccname = data['ccname']
         max_appointments = data['maxAppointments']
@@ -400,12 +456,18 @@ def update_max_appointments():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    finally:
+        # Close the database cursor and connection after use
+        cursor.close()
+        close_db_connection(connection)
 
 
 @app.route('/api/fetch-max-appointments', methods=['GET','POST'])
 def fetch_max_appointments():
+    connection = open_db_connection()
     print('fetch max call made')
     try:
+        cursor = connection.cursor()
         print('here')
         data = request.json
         print(data)
@@ -422,6 +484,10 @@ def fetch_max_appointments():
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    finally:
+        # Close the database cursor and connection after use
+        cursor.close()
+        close_db_connection(connection)
 
 
 if __name__ == '__main__':

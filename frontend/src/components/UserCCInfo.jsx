@@ -42,7 +42,7 @@ const UserCCInfo = () => {
                 CCkey
             };
 
-            const response = await axios.post('http://localhost:8000/api/cc-data', formData, {
+            const response = await axios.post('https://timesyncv2-a367bdb60782.herokuapp.com/api/cc-data', formData, {
               headers: {
                 'Content-Type': 'application/json'
               }

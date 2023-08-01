@@ -1,9 +1,10 @@
+
 body {
     margin: 0;
     padding: 0;
     font-family:'Lexend Deca', sans-serif;
     /* background: linear-gradient(to bottom, #0ab0f6, #02359a); */
-    background-image: url('/Users/shuaibahmed/TimeSync/frontend/src/components/testbg2.png');
+    background-image: url('/public/testbg2.png');
     /* Adjust background properties as needed */
     background-size: cover;
     background-position: center;
