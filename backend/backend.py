@@ -342,7 +342,7 @@ def store_appt_data():
 
 @app.route('/api/fetch-data', methods=['GET', 'POST'])
 def fetch_data():
-    connection = open_db_connection
+    connection = open_db_connection()
     try:
         cursor = connection.cursor()
         table_name = request.args.get('tableName')  # Get the table name from the request parameters
@@ -454,34 +454,6 @@ def update_max_appointments():
 
         return jsonify({'message': 'Max Appointments updated successfully'})
 
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-    finally:
-        # Close the database cursor and connection after use
-        cursor.close()
-        close_db_connection(connection)
-
-
-@app.route('/api/fetch-max-appointments', methods=['GET','POST'])
-def fetch_max_appointments():
-    connection = open_db_connection()
-    print('fetch max call made')
-    try:
-        cursor = connection.cursor()
-        print('here')
-        data = request.json
-        print(data)
-        dispname = data['dispname']
-        print(dispname)
-        cursor.execute("SELECT maxAppt WHERE CCname = %s", (dispname,))
-        company_data = cursor.fetchone()
-        max_appt = company_data[0]
-
-        print(max_appt)
-        
-
-        return jsonify(max_appt)
-    
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     finally:
