@@ -645,6 +645,7 @@ const CalendarPage = () => {
           <h2 className='calendar-title'>{dispname}'s Schedule</h2>
           <div className='calendar-container'>
             <FullCalendar 
+            contentHeight = {600}
             plugins={[dayGridPlugin,timeGridPlugin,interactionPlugin]}
             initialView={'timeGridWeek'}
             headerToolbar={

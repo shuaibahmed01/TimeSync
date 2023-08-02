@@ -71,11 +71,11 @@ const CompanySearch = () => {
     return (
         <div>
             <div>
-                <img src={newimg} className='CS-sm-logo' alt="small-logo"/>
+                <img src={newimg} className='CC-sm-logo' alt="small-logo"/>
             </div>
-            <div className = 'CS-page'>
+            <div className = 'CSinfo2'>
                 <h5 className="other-larger-header3">Please Search for Your Organization</h5>
-                <form className = 'CS-search' onSubmit={handleSubmit}>
+                <form className = 'CompCreation-form' onSubmit={handleSubmit}>
                     <input
                         className='CS-input'
                         type="text"
@@ -89,11 +89,10 @@ const CompanySearch = () => {
                         <option key={index} value={suggestion} />
                     ))}
                     </datalist>
-                    
-                    <button   type="submit">Search</button>
+                    {errorMessage && <p className='CS-error'>{errorMessage}</p>}
+                    <button className = 'logbutton2' type="submit">Search</button>
                     
                 </form>
-                {errorMessage && <p className='CS-error'>{errorMessage}</p>}
               
         
 

@@ -12,6 +12,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+
 # Use the Heroku database connection (ClearDB or JawsDB) in production
 def open_db_connection():
     # Use the Heroku database connection (ClearDB or JawsDB) in production
@@ -309,8 +310,10 @@ def hour_check():
 
 @app.route('/api/appt-create', methods=['POST'])
 def store_appt_data():
+    print('reaches appt')
     connection = open_db_connection()
     try:
+        print('reaches try')
         cursor = connection.cursor()
         data = request.json
         client_name = data['client_name']
@@ -321,9 +324,11 @@ def store_appt_data():
 
         start_time = start_time[:-3]
         end_time = end_time[:-3]
-        
-
+        print(dispname)
+        dispname = dispname.replace(' ', '_').lower()
+        print(dispname)
         table_name = '`' + dispname + '`'  # Wrap table name in backticks to handle special characters
+        print(table_name)
         sql = 'INSERT INTO {} (client_name,date, start_time, end_time) VALUES (%s, %s, %s, %s)'.format(table_name)
         values = (client_name,date, start_time, end_time)
         cursor.execute(sql, values)
@@ -347,7 +352,8 @@ def fetch_data():
         cursor = connection.cursor()
         table_name = request.args.get('tableName')  # Get the table name from the request parameters
         print('TABLE NAME:', table_name)
-        cursor.execute(f'SELECT * FROM {table_name}')
+        table_name2 = table_name.replace(' ', '_').lower()
+        cursor.execute(f'SELECT * FROM {table_name2}')
         print('1')
         rows = cursor.fetchall()
         print('ROWS:', rows)
@@ -396,8 +402,8 @@ def delete_appointment():
         date = appointment_data['date']
         start_time = appointment_data['start_time'][:-3]
 
+        table = table.replace(' ', '_').lower()
         
-
         table_name = '`' + table + '`'  # Wrap table name in backticks to handle special characters
         # Delete the appointment from the database
         query = "DELETE FROM {} WHERE client_name = %s AND date = %s AND start_time = %s".format(table_name)

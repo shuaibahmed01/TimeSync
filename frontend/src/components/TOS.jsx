@@ -2,7 +2,7 @@ import React from 'react'
 import './Homepage.css';
 function TOS() {
   return (
-    <div>
+    <div className='tos-container'>
         <h2 className='TOS-header'> Terms of Service</h2>
         <p className='TOS'> 
         Welcome to TimeSync. These Terms of Service govern your use of

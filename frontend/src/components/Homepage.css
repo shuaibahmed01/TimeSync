@@ -18,7 +18,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin-top: -7rem;
+    margin-left: -19rem;
   }
 
   .title-container {
@@ -138,7 +138,10 @@ body {
 
 /* IntroAnimation.css */
 .intro-container {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 h1 {

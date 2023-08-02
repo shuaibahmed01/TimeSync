@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100vw;
+
 }
 
 .App-logo {
@@ -62,8 +65,19 @@
   display: flex;
   flex-direction: column;
   color: white;
-  /* height: 100%; */
+
 }
+
+.login-form {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.register-form {
+  width: 70%;
+  margin-left: 15%;
+}
+
 
 .login-form2 {
   display: flex;
@@ -88,29 +102,34 @@
 
 
 .Login {
-  margin-top: -10rem;
-  padding: 15rem 13rem; /* Adjust the padding as per your preference */
-  max-width: 500px; /* Set a maximum width for the form */
+  /* padding: 15rem 13rem; Adjust the padding as per your preference */
+  max-width: 500rem; /* Set a maximum width for the form */
   /* margin: auto; */
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   font-size: 3rem;
-  margin-left: -45rem;
-  margin-right: -3rem;
-  width: 275px;
+  margin-left: -13%;
+  margin-right: 2%;
+  width: 35%;
+  height: 50%;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-top: 10%;
 }
 
 
 
 
 .Register {
-  padding: 15rem 13rem; /* Adjust the padding as per your preference */
-  max-width: 500px; /* Set a maximum width for the form */
+  /*padding: 15rem 13rem;  Adjust the padding as per your preference */
+  max-width: 500rem; /* Set a maximum width for the form */
   margin: auto;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   font-size: 2rem;
-  margin-left: -53rem;
-  margin-right: -7rem;
-  height: 350px;
+  margin-left: -10rem;
+  height: 50%;
+  width: 30%;
+  padding-left: 1%;
+  padding-right: 1%;
 
 }
 
@@ -195,28 +214,30 @@ button:hover {
 
 .split {
   display: flex;
+  height: 100vh;
+  width: 100vw;
 }
 
 .right-side {
-  width: 900px;
+  width: 65%;
   background-color: rgb(240, 240, 240);
   margin-right: -41rem;
   /* height: 100%; */
-  height: 900px;
+
 }
 
 .right-side2 {
-  width: 950px;
+  width: 62%;
   background-color: rgb(240, 240, 240);
-  margin-right: -50rem;
+  /* margin-right: -50rem; */
   margin-left: 1rem;
-  height: 830px;
+  /* height: 830px; */
 }
 
 
 .stock {
-  height: 500px;
-  width: 700px;
+  height: 50%;
+  width: 60%;
   margin-top: -3rem;
   border: #282c34;
   border-radius: 20px;
@@ -228,8 +249,10 @@ button:hover {
 
 
 .stock2 {
-  height: 500px;
-  width: 800px;
+  height: 50%;
+  width: 75%;
+  padding: 30px;
+  background-color: white;
   margin-top: 7rem;
   border: #282c34;
   border-radius: 20px;
@@ -255,7 +278,7 @@ button:hover {
   border-radius: 20px;
   margin-top: 7rem;
   margin-left: 3rem;
-  text-align: left; 
+  text-align: center; 
   width: 65%;
   z-index: 2;
   position: relative;
@@ -268,40 +291,46 @@ button:hover {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2); 
   border-radius: 20px;
   margin-top: -3rem;
-  margin-left: 25rem;
-  text-align: left; 
-  width: 45%;
+  margin-left: 15rem;
+  text-align: center; 
+  height: 5%;
+  width: 55%;
   z-index: 2;
   position: relative;
 }
 
 
 .sm-logo {
-  margin-left: -65rem;
   width: 14rem;
   margin-top: 1.2rem;
   
 }
 
 .sm-logo2 {
-  margin-left: -75rem;
+  margin-left: 0rem;
   width: 13rem;
   margin-top: 1.2rem;
 }
 
 .CC-sm-logo {
-  margin-left: -74rem;
-  margin-bottom: 10rem;
+  position: fixed;
+  top: 10px;
+  left: 10px;
   width: 14rem;
-  margin-top: .8rem;
+  /* margin-left: -74rem;
+  margin-bottom: 10rem;
+  margin-top: .8rem; */
 }
 
 .CCinfo {
-  margin-bottom: 30rem;
+  margin-top: 15%;
   height: 70px;
 }
 
-
+.CSinfo2 {
+  margin-top: 20%;
+  height: 70px;
+}
 
 .CS-sm-logo {
   margin-left: -74rem;
@@ -337,6 +366,8 @@ button:hover {
 }
 
 .link-to-creation {
+  margin-left: 1.5%;
+  margin-top: 3%;
   color: white;
   font-weight: bold;
 }
@@ -391,6 +422,16 @@ button:hover {
   font-family: 'Times New Roman', Times, serif;
   font-size: larger;
   width: 50rem;
+  
+}
+
+/* Homepage.css */
+.tos-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* This will ensure the container takes up the full viewport height. */
 }
 
 .TOS-subheader {
@@ -399,3 +440,27 @@ button:hover {
   margin-top: 2rem;
 
 }
+
+
+.CompCreation-form {
+  width: 40%;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.CompCreation-form3 {
+  width: 40%;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.logbutton2 {
+  margin-top: 5%;
+  width: 50%;
+  margin-left: 25%;
+}
+

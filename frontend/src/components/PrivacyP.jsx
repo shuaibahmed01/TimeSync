@@ -2,7 +2,7 @@ import React from 'react'
 
 function PrivacyP() {
   return (
-    <div>
+    <div className='tos-container'>
         <h2 className='TOS-header'> Privacy Policy</h2>
         <p className='TOS'>
         Last Updated: 07/22/2023

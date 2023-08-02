@@ -33,10 +33,10 @@ const Compcreation = () => {
         try {
             const registrationData = JSON.parse(localStorage.getItem('registrationData'));
             const { name, accountType, email, password } = registrationData
-
+            console.log('regdata', registrationData)
             const CalendarData = { name, CCname, accountType};
             localStorage.setItem('CalendarData', JSON.stringify(CalendarData));
-
+            console.log('caldata', CalendarData)
 
             const formData = {
                 name,
@@ -46,8 +46,8 @@ const Compcreation = () => {
                 CCname,
                 CCkey
             };
-
-            const response = await axios.post('http://localhost:8000/api/cc-create', formData, {
+            console.log('creation details', formData)
+            const response = await axios.post('https://timesyncv2-a367bdb60782.herokuapp.com/api/cc-create', formData, {
               headers: {
                 'Content-Type': 'application/json'
               }
@@ -55,7 +55,7 @@ const Compcreation = () => {
             });
 
              // Handle the response or perform additional actions as needed
-             console.log(response.data);
+             console.log('creation fetched data', response.data);
              
              if (response.data.message === 'Data stored successfully'){
                 navigate('/calendar')
@@ -66,7 +66,7 @@ const Compcreation = () => {
               }
 
         } catch (error) { 
-            console.log(error);
+            console.log('THIS IS THE ERROR:',error);
             setErrorMessage('Company Name Not Available. Please Choose Another Name');
         }
 
@@ -78,7 +78,7 @@ const Compcreation = () => {
             </div>
             <div className='CCinfo'>
                 <h4 className="other-larger-header2">Create Organization Credentials</h4>
-                <form className='login-form' onSubmit={handleSubmit}>
+                <form className='CompCreation-form' onSubmit={handleSubmit}>
                     <label htmlFor='email'>Organization:</label>
                     <input value={CCname} onChange={(e) => setCompName(e.target.value)} type="name" placeholder='Enter name here' id='email' name='email'/>
                     <label htmlFor='password'>Organization Key (4-digit PIN):</label>

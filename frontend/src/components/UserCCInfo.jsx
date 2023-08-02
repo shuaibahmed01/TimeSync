@@ -67,21 +67,21 @@ const UserCCInfo = () => {
 
     }
     return (
-        <div>
+        <div className='CC-info-body'>
             <div>
                 <img src={newimg} className='CC-sm-logo' alt="small-logo"/>
             </div>
             <div className='CCinfo'>
                 <h4 className="other-larger-header2">Please Enter Organization Credentials</h4>
-                <form className='login-form2' onSubmit={handleSubmit}>
+                <form className='CompCreation-form' onSubmit={handleSubmit}>
                     <label htmlFor='email'>Organization Name:</label>
                     <input value={CCname} onChange={(e) => setCCname(e.target.value)} type='name' placeholder='Enter name here' />
                     <label htmlFor='password'>Organization Key:</label>
                     <input value={CCkey} onChange={(e) => setCCkey(e.target.value)} type='password' placeholder='Enter key here' id='password' name='password'/>
                     {errorMessage && <p className="User-CC-error">{errorMessage}</p>}
-                    <button className = 'logbutton' type='submit'>Join</button>
+                    <button className = 'logbutton3' type='submit'>Join</button>
+                    <Link className='link-to-creation' to='/Compcreation'>Click Here to Create Organization!</Link>
                 </form>
-                <Link className='link-to-creation' to='/Compcreation'>Click Here to Create Organization!</Link>
             </div>
         </div>
         )
