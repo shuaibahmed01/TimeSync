@@ -10,7 +10,7 @@ Developers: Shuaib Ahmed, Samintha Chandrasiri
 
 ## Overview
 
-Inspired by the need to streamline scheduling logistics and communication, Shuaib Ahmed and Samintha Chandrasiri worked through their freshman year in the UC system to craete TimeSync. TimeSync is a versatile and user-friendly scheduling application designed to revolutionize how organizations and groups manage their tasks and appointments. It offers an intuitive platform that allows clients and organizers to collaborate seamlessly on a shared platform.
+Inspired by the need to streamline scheduling logistics and communication, Shuaib Ahmed and Samintha Chandrasiri worked through their freshman year in the UC system to create TimeSync. TimeSync is a versatile and user-friendly scheduling application designed to revolutionize how organizations and groups manage their tasks and appointments. It offers an intuitive platform that allows clients and organizers to collaborate seamlessly on a shared platform.
 
 After months of hardwork and improvements, our team felt that the product was ready to be released as a beta and free-to-use platform. Feel free to check out the provided demo, and use the application!
 
