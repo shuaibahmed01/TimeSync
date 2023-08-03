@@ -12,7 +12,7 @@ After months of hardwork and improvements, our team felt that the product was re
 
 **1. User-Friendly Interface:** We believe in simplicity and ease of use. TimeSync features a user-friendly interface that requires no technical expertise, making it accessible to all users, regardless of their level of tech-savviness.
 
-**2. **Shared Platform:** TimeSync bridges the communication gap between clients and organizers by providing a shared platform for viewing schedules and appointments. This promotes collaboration, reduces miscommunication, and fosters a more coordinated workflow.
+**2. Shared Platform:** TimeSync bridges the communication gap between clients and organizers by providing a shared platform for viewing schedules and appointments. This promotes collaboration, reduces miscommunication, and fosters a more coordinated workflow.
 
 **3. Versatility:** Whether you are a corporate team, a non-profit organization, a sports club, or any group with scheduling needs, TimeSync caters to all. Our application is customizable and flexible to accommodate a wide range of scheduling requirements.
 
