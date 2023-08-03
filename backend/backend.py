@@ -49,8 +49,10 @@ def store_data():
         password = data['password']
         company = data.get('CCname', '')
         
+        cursor.execute("SELECT * FROM Companies WHERE CCname = %s", (company,))
+        company2 = cursor.fetchone()
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-        if (company):
+        if (company2):
             # Perform the necessary database operation (e.g., insert into a table)
             sql = 'INSERT INTO Clients (name, email, password, company) VALUES (%s, %s, %s, %s)'
             values = (name, email, hashed_password, company)

@@ -107,10 +107,10 @@ const Register = () => {
                     <input value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Enter email here' id='email' name='email'/>
                     <label htmlFor='password'>Enter Password:</label>
                     <input value={password} onChange={(e) => setPass(e.target.value)} type='password' placeholder='Enter password here' id='password' name='password'/>
-                    {passwordError && <p className='error'>{passwordError}</p>}
-                    {passwordFormatError && <p className='error'>{passwordFormatError}</p>}
-                    {errorMessage && <p className='error'>{errorMessage}</p>}
-                    <button type='submit'>Register</button>
+                    {passwordError && <p className='error5'>{passwordError}</p>}
+                    {passwordFormatError && <p className='error5'>{passwordFormatError}</p>}
+                    {errorMessage && <p className='error5'>{errorMessage}</p>}
+                    <button type='submit' className='register-button'>Register</button>
                 </form>
             </div>
             <div className='right-side2'>
