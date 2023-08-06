@@ -14,6 +14,9 @@ Inspired by the need to streamline scheduling logistics and communication, Shuai
 
 After months of hardwork and improvements, our team felt that the product was ready to be released as a beta and free-to-use platform. Feel free to check out the provided demo, and use the application!
 
+![Alt text](/Overview1.png)
+![Alt text](/Overview2.png)
+
 ## Key Features
 
 **1. User-Friendly Interface:** We believe in simplicity and ease of use. TimeSync features a user-friendly interface that requires no technical expertise, making it accessible to all users, regardless of their level of tech-savviness.
