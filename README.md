@@ -21,7 +21,8 @@ After months of hardwork and improvements, our team felt that the product was re
 **2. Shared Platform:** TimeSync bridges the communication gap between clients and organizers by providing a shared platform for viewing schedules and appointments. This promotes collaboration, reduces miscommunication, and fosters a more coordinated workflow.
 
 **3. Versatility:** Whether you are a corporate team, a non-profit organization, a sports club, or any group with scheduling needs, TimeSync caters to all. Our application is customizable and flexible to accommodate a wide range of scheduling requirements.  
-       
+
+ <br>
           
 ![Alt text](/Overview1.png)
 ![Alt text](/Overview2.png)
