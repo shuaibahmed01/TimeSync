@@ -2,7 +2,7 @@
 
 Developers: Shuaib Ahmed, Samintha Chandrasiri
 
-![Alt text](/Devpics.png)
+![Alt text](/Developers.png)
 
 ## Links
 **Link to Application:** https://timesyncbeta.netlify.app/ \
