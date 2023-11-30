@@ -23,14 +23,7 @@ def open_db_connection():
             password=os.environ['DB_PASSWORD'],
             database=os.environ['DB_NAME'],
         )
-    else:
-        # Use your local development database connection
-        return mysql.connector.connect(
-            host='us-cdbr-east-06.cleardb.net',
-            user='b846167a0f960d',
-            password='f991bcac',
-            database='heroku_ec43fdd48a55760'
-        )
+
 
 def close_db_connection(connection):
     connection.close()
